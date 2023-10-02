@@ -4,19 +4,14 @@ import Error from "../../../common/Error";
 import Loading from "../../../common/Loading";
 import { getPerson } from "./getPerson";
 import { getPersonCredits } from "./getPersonCredits";
-import { useParams, useHistory } from "react-router-dom/cjs/react-router-dom";
-import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom/cjs/react-router-dom";
 import { selectGenres } from "../../Genres/genresSlice";
-import { selectPeopleSearchTerm } from "../PeopleList/peopleSlice";
-
+import { useSelector } from "react-redux";
 const PersonPage = () => {
   const [personData, setPersonData] = useState(null);
   const [personCreditsData, setPersonCreditsData] = useState(null);
-
-  const { id } = useParams();
   const genres = useSelector(selectGenres);
-  const history = useHistory();
-  const searchTerm = useSelector(selectPeopleSearchTerm);
+  const { id } = useParams();
 
   useEffect(() => {
     setPersonData("loading");
@@ -42,21 +37,7 @@ const PersonPage = () => {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [id]);
-
-  useEffect(() => {
-    const handlePeopleSearch = () => {
-      if (searchTerm.trim() !== "") {
-        history.push("/people");
-      }
-    };
-
-    const timeoutId = setTimeout(handlePeopleSearch, 500);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [searchTerm, history]);
+  }, []);
 
   switch (personData) {
     case "error":
