@@ -2,8 +2,6 @@
 
 This is Movies Browser, OUR first project as a group. Our application allows users to easily browse through a huge database of movies and actors, which is retrieved from an API.
 
-**_NOTE:_** Project is in progress!
-
 ## Demo
 
 https://marcelurbanczyk.github.io/Movies-Browser/
